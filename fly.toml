@@ -22,6 +22,17 @@ primary_region = 'ewr'
   min_machines_running = 0
   processes = ['app']
 
+    [http_service.checks]
+    interval = "10s"   # Run health checks every 10 seconds
+    timeout = "2s"     # Fail if response takes longer than 2 seconds
+    grace_period = "5s" # Allow app time to boot before checking
+    method = "get"
+    path = "/health"   # Your health check endpoint
+    protocol = "http"
+
+[deploy]
+  strategy = "canary"  # Canary deployment strategy
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'
