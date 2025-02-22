@@ -12,5 +12,6 @@ app.get('/version', (req, res) => {
 });
 
 app.listen(PORT, () => {
+  throw new Error();
   console.log(`server started on port ${PORT}`);
 });
